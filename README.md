@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FileFlow — Async File Processing App
 
 A full-stack web application where authenticated users upload files that are processed asynchronously, with real-time status tracking and output downloads.
@@ -197,3 +198,6 @@ Run: `npm install --prefix server --arch=arm64`
 
 **CORS errors**  
 The CRA proxy in `client/package.json` routes `/auth`, `/files`, `/jobs` to `localhost:5000`. Make sure the backend is running before the frontend.
+=======
+# Document_Processing_web
+>>>>>>> ca922db663dd0dbec94f6d1aefb3c1ed65d38b4f
