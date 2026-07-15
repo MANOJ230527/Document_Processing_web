@@ -1,0 +1,139 @@
+/* ── Jobs Table ─────────────────────────────── */
+.jobs-card {
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.jobs-card-header {
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.jobs-card-left { display: flex; align-items: center; gap: 9px; }
+.jobs-card-title { font-size: 14px; font-weight: 600; color: var(--gray-800); }
+.jobs-count-badge {
+  background: var(--gray-100); color: var(--gray-600);
+  font-size: 11.5px; font-weight: 600;
+  padding: 1px 8px; border-radius: 99px;
+}
+.jobs-live-badge {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11.5px; font-weight: 500; color: var(--success);
+  background: var(--success-bg); border: 1px solid var(--success-border);
+  padding: 2px 9px; border-radius: 99px;
+}
+.live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--success); animation: pulse 1.4s ease infinite;
+}
+
+.jobs-refresh {
+  display: flex; align-items: center; gap: 5px;
+  padding: 5px 11px;
+  background: none; border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-size: 12px; color: var(--gray-500); cursor: pointer;
+  transition: border-color .15s, color .15s;
+}
+.jobs-refresh:hover { border-color: var(--gray-400); color: var(--gray-700); }
+
+/* Empty / loading / error states */
+.jobs-state {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 52px 24px; gap: 8px; text-align: center;
+}
+.jobs-state-icon { color: var(--gray-300); margin-bottom: 4px; }
+.jobs-state-title{ font-size: 13.5px; font-weight: 600; color: var(--gray-600); }
+.jobs-state-sub  { font-size: 12.5px; color: var(--gray-400); }
+.jobs-err-state  { color: var(--danger); font-size: 13px; padding: 24px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 7px; }
+
+/* Table */
+.jobs-table-wrap { overflow-x: auto; }
+.jobs-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px; min-width: 620px;
+}
+.jobs-table thead tr {
+  background: var(--gray-50);
+  border-bottom: 1px solid var(--gray-200);
+}
+.jobs-table th {
+  padding: 10px 16px;
+  font-size: 11px; font-weight: 600;
+  color: var(--gray-500);
+  text-transform: uppercase; letter-spacing: .05em;
+  text-align: left; white-space: nowrap;
+}
+.jobs-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  vertical-align: middle;
+}
+.jobs-table tbody tr:last-child td { border-bottom: none; }
+.jobs-table tbody tr { transition: background .1s; }
+.jobs-table tbody tr:hover { background: var(--gray-50); }
+
+/* File cell */
+.file-cell { display: flex; align-items: center; gap: 10px; }
+.file-cell-icon {
+  width: 30px; height: 30px; flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+}
+.fi-pdf { background: #fff1f0; }
+.fi-img { background: #f5f0ff; }
+.fi-txt { background: #eff6ff; }
+.file-cell-name { font-size: 13px; font-weight: 500; color: var(--gray-800); max-width: 180px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.file-cell-meta { font-size: 11.5px; color: var(--gray-400); margin-top: 1px; }
+
+.mono-cell { font-size: 12px; color: var(--gray-500); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Status badges */
+.status-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 99px; white-space: nowrap;
+  font-size: 12px; font-weight: 500; border: 1px solid;
+}
+.s-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+
+.sp-uploaded   { background: var(--warning-bg);  color: var(--warning);  border-color: var(--warning-border);  }
+.sp-uploaded   .s-dot { background: var(--warning); }
+.sp-processing { background: var(--primary-light); color: var(--primary); border-color: var(--primary-border); }
+.sp-processing .s-dot { background: var(--primary); animation: pulse 1s ease infinite; }
+.sp-done       { background: var(--success-bg);  color: var(--success);  border-color: var(--success-border);  }
+.sp-done       .s-dot { background: var(--success); }
+.sp-failed     { background: var(--danger-bg);   color: var(--danger);   border-color: var(--danger-border);   }
+.sp-failed     .s-dot { background: var(--danger); }
+
+/* Progress bar */
+.prog-cell { min-width: 120px; }
+.prog-wrap { display: flex; align-items: center; gap: 8px; }
+.prog-track { flex: 1; height: 5px; background: var(--gray-200); border-radius: 99px; overflow: hidden; }
+.prog-fill  { height: 100%; border-radius: 99px; transition: width .6s ease; }
+.prog-fill.pf-active { background: var(--primary); animation: shimmer 1.8s linear infinite; background-size: 200% 100%;
+  background-image: linear-gradient(90deg, var(--primary) 0%, #60a5fa 50%, var(--primary) 100%); }
+.prog-fill.pf-done   { background: var(--success); }
+.prog-fill.pf-failed { background: var(--gray-300); }
+.prog-pct { font-size: 11.5px; color: var(--gray-400); min-width: 30px; text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Action buttons */
+.action-wrap { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.btn-dl {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 5px 11px; border-radius: var(--radius-sm);
+  font-size: 12px; font-weight: 500; cursor: pointer; border: 1px solid;
+  transition: all .13s; white-space: nowrap;
+}
+.btn-dl-output  { background: var(--success-bg); color: var(--success); border-color: var(--success-border); }
+.btn-dl-output:hover  { background: #dcfce7; }
+.btn-dl-original{ background: var(--white); color: var(--gray-600); border-color: var(--gray-200); }
+.btn-dl-original:hover{ background: var(--gray-50); border-color: var(--gray-300); }
+
+.err-label {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11.5px; color: var(--danger); max-width: 180px;
+  cursor: help; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
